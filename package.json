@@ -1,0 +1,13 @@
+{
+  "name": "hapi-rest",
+  "version": "0.0.1",
+  "dependencies": {
+    "q": "~0.9.7",
+    "hapi": "~1.10.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=0.10.17"
+  },
+  "scripts": {}
+}
