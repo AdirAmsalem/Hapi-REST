@@ -1,5 +1,6 @@
 // Load modules
 var Q = require('q');
+var fs = require('fs');
 
 /**
  * UserObject
@@ -8,48 +9,7 @@ var Q = require('q');
  * @param {String} username
  * @param {String} password
  */
-var users = [
-	{
-		id: 1,
-		username: 'Adir1',
-		password: 'testpass'
-	},
-	{
-		id: 2,
-		username: 'Adir2',
-		password: 'testpass'
-	},
-	{
-		id: 3,
-		username: 'Adir3',
-		password: 'testpass'
-	},
-	{
-		id: 4,
-		username: 'Adir4',
-		password: 'testpass'
-	},
-	{
-		id: 5,
-		username: 'Adir5',
-		password: 'testpass'
-	},
-	{
-		id: 6,
-		username: 'Adir6',
-		password: 'testpass'
-	},
-	{
-		id: 7,
-		username: 'Adir7',
-		password: 'testpass'
-	},
-	{
-		id: 8,
-		username: 'Adir8',
-		password: 'testpass'
-	}
-];
+var users = JSON.parse(fs.readFileSync(__dirname + '/data/users.json', 'utf8'));
 
 /**
  * Returns a new user id
