@@ -106,7 +106,7 @@ function getById(id) {
 /**
  * Creates a new user
  * 
- * @param  {Object} data
+ * @param  {Object} data (username, password)
  * @return {Object} UserObject
  */
 function add(data) {
@@ -162,6 +162,7 @@ function remove(id) {
 			deferred.reject(404);
 		}
 	}
+
 	return deferred.promise;
 }
 
