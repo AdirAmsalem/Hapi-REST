@@ -1,7 +1,7 @@
 var App = (function() {
 
 	var server;
-	var routes = ['main', 'users']
+	var routes = ['main', 'users'];
 
 	// Initialize the server
 	function initServer() {
@@ -33,7 +33,7 @@ var App = (function() {
 			registerRoutes();
 			startServer();
 		}
-	}
+	};
 
 })();
 
