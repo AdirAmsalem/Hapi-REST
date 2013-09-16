@@ -33,6 +33,21 @@ routes.push({
 	}
 });
 
+
+/**
+ * Update a user
+ */
+routes.push({
+	method: 'POST',
+	path: '/users/{id}',
+	handler: function(req) {
+		var id = req.params.id;
+		var data = req.payload;
+
+		Utilities.handleResponse(req, users.update(id, data));
+	}
+});
+
 /**
  * Delete a user
  */

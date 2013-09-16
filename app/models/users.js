@@ -97,6 +97,44 @@ function add(data) {
 }
 
 /**
+ * Updates a user
+ * 
+ * @param  {Number} id
+ * @param  {Object} data
+ * @return {Object} UserObject
+ */
+function update(id, data) {
+	var deferred = Q.defer();
+
+	if (isNaN(id) || typeof data !== 'object') {
+		deferred.reject(400);
+	} else {
+		id = Number(id);
+
+		users.some( function(user, index) {
+			if (user.id === id) {
+				users[index] = { id: id };
+
+				for (var key in data) {
+					if (data.hasOwnProperty(key)) {
+						users[index][key] = data[key];
+					}
+				}
+
+				deferred.resolve(users[index]);
+				return true;
+			}
+		});
+
+		if (deferred.promise.isPending()) {
+			deferred.reject(404);
+		}
+	}
+
+	return deferred.promise;
+}
+
+/**
  * Removes a user
  * 
  * @param  {Number} id
@@ -132,6 +170,7 @@ var exports = {
 	getAll: getAll,
 	getById: getById,
 	add: add,
+	update: update,
 	remove: remove
 };
 module.exports = exports;
