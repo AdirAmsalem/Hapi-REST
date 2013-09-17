@@ -1,14 +1,13 @@
 // Load modules
 var Q = require('q');
-var fs = require('fs');
-var db = require('mongoskin').db('localhost:27017/hapi-rest');
+var db = require('mongoskin').db('localhost:27017/hapi-rest', { safe: false });
 
 /**
  * UserObject
  * 
- * @param {String} _id
- * @param {String} username
- * @param {String} password
+ * @property {String} _id
+ * @property {String} username
+ * @property {String} password
  */
 var users = db.collection('users');
 
