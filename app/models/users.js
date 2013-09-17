@@ -1,24 +1,29 @@
 // Load modules
 var Q = require('q');
 var fs = require('fs');
+var db = require('mongoskin').db('localhost:27017/hapi-rest');
 
 /**
  * UserObject
  * 
- * @param {Number} id
+ * @param {String} _id
  * @param {String} username
  * @param {String} password
  */
-var users = JSON.parse(fs.readFileSync(__dirname + '/data/users.json', 'utf8'));
+var users = db.collection('users');
 
 /**
- * Returns a new user id
+ * Converts and validates the specified id
  * 
- * @param  {Array} users
- * @return {Number} id
+ * @param  {String} id
+ * @return {String|Boolean} converted id on success / false on failure
  */
-function getNewId(users) {
-	return users[users.length-1].id + 1;
+function convertId(id) {
+	try {
+		return db.ObjectID.createFromHexString(id);
+	} catch(e) {
+		return false;
+	}
 }
 
 /**
@@ -29,7 +34,13 @@ function getNewId(users) {
 function getAll() {
 	var deferred = Q.defer();
 
-	deferred.resolve(Array.prototype.slice.call(users, 0));
+	users.find().toArray( function(error, result) {
+		if (result) {
+			deferred.resolve(result);
+		} else {
+			deferred.reject(500);
+		}
+	});
 
 	return deferred.promise;
 };
@@ -37,27 +48,23 @@ function getAll() {
 /**
  * Get a specific user
  * 
- * @param  {Number} id
+ * @param  {String} id
  * @return {Object} UserObject
  */
 function getById(id) {
 	var deferred = Q.defer();
+	id = convertId(id);
 
-	if (isNaN(id)) {
+	if (!id) {
 		deferred.reject(400);
 	} else {
-		id = Number(id);
-
-		users.some( function(user) {
-			if (user.id === id) {
-				deferred.resolve(user);
-				return true;
+		users.findOne({ '_id': id }, function(error, result) {
+			if (result) {
+				deferred.resolve(result);
+			} else {
+				deferred.reject(404);
 			}
 		});
-
-		if (deferred.promise.isPending()) {
-			deferred.reject(404);
-		}
 	}
 
 	return deferred.promise;
@@ -66,31 +73,22 @@ function getById(id) {
 /**
  * Creates a new user
  * 
- * @param  {Object} data (username, password)
+ * @param  {Object} user
  * @return {Object} UserObject
  */
-function add(data) {
+function add(user) {
 	var deferred = Q.defer();
 
-	if (typeof data !== 'object' ||
-		typeof data.username !== 'string' ||
-		typeof data.password !== 'string')
-	{
+	if (typeof user !== 'object') {
 		deferred.reject(400);
 	} else {
-		var id = getNewId(users);
-
-		if (typeof id === 'number') {
-			var user = {
-				id: id,
-				username: data.username,
-				password: data.password
-			};
-			users.push(user);
-			deferred.resolve(user);
-		} else {
-			deferred.reject(500);
-		}
+		users.insert(user, function(error, result) {
+			if (result) {
+				deferred.resolve(result);
+			} else {
+				deferred.reject(500);
+			}
+		})
 	}
 
 	return deferred.promise;
@@ -99,36 +97,24 @@ function add(data) {
 /**
  * Updates a user
  * 
- * @param  {Number} id
- * @param  {Object} data
+ * @param  {String} id
+ * @param  {Object} user
  * @return {Object} UserObject
  */
-function update(id, data) {
+function update(id, user) {
 	var deferred = Q.defer();
+	id = convertId(id);
 
-	if (isNaN(id) || typeof data !== 'object') {
+	if (!id || typeof user !== 'object') {
 		deferred.reject(400);
 	} else {
-		id = Number(id);
-
-		users.some( function(user, index) {
-			if (user.id === id) {
-				users[index] = { id: id };
-
-				for (var key in data) {
-					if (data.hasOwnProperty(key)) {
-						users[index][key] = data[key];
-					}
-				}
-
-				deferred.resolve(users[index]);
-				return true;
+		users.update({ '_id': id }, user, function(error, result) {
+			if (!error) {
+				deferred.resolve(true);
+			} else {
+				deferred.reject(500);
 			}
 		});
-
-		if (deferred.promise.isPending()) {
-			deferred.reject(404);
-		}
 	}
 
 	return deferred.promise;
@@ -137,28 +123,23 @@ function update(id, data) {
 /**
  * Removes a user
  * 
- * @param  {Number} id
+ * @param  {String} id
  * @return {Boolean} true on success
  */
 function remove(id) {
 	var deferred = Q.defer();
+	id = convertId(id);
 
-	if (isNaN(id)) {
+	if (!id) {
 		deferred.reject(400);
 	} else {
-		id = Number(id);
-
-		users.some( function(user, index) {
-			if (user.id === id) {
-				users.splice(index, 1);
+		users.remove({ '_id': id}, function(error) {
+			if (!error) {
 				deferred.resolve(true);
-				return true;
+			} else {
+				deferred.reject(500);
 			}
 		});
-
-		if (deferred.promise.isPending()) {
-			deferred.reject(404);
-		}
 	}
 
 	return deferred.promise;
