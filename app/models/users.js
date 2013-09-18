@@ -42,7 +42,7 @@ function getAll() {
 	});
 
 	return deferred.promise;
-};
+}
 
 /**
  * Get a specific user
@@ -58,16 +58,18 @@ function getById(id) {
 		deferred.reject(400);
 	} else {
 		users.findOne({ '_id': id }, function(error, result) {
-			if (result) {
-				deferred.resolve(result);
-			} else {
+			if (error) {
+				deferred.reject(500);
+			} else if (!result) {
 				deferred.reject(404);
+			} else {
+				deferred.resolve(result);
 			}
 		});
 	}
 
 	return deferred.promise;
-};
+}
 
 /**
  * Creates a new user
@@ -98,7 +100,7 @@ function add(user) {
  * 
  * @param  {String} id
  * @param  {Object} user
- * @return {Object} UserObject
+ * @return {Boolean} true on success
  */
 function update(id, user) {
 	var deferred = Q.defer();
@@ -107,7 +109,7 @@ function update(id, user) {
 	if (!id || typeof user !== 'object') {
 		deferred.reject(400);
 	} else {
-		users.update({ '_id': id }, user, function(error, result) {
+		users.update({ '_id': id }, user, function(error) {
 			if (!error) {
 				deferred.resolve(true);
 			} else {
@@ -146,11 +148,10 @@ function remove(id) {
 
 
 // Publish API
-var exports = {
+module.exports = {
 	getAll: getAll,
 	getById: getById,
 	add: add,
 	update: update,
 	remove: remove
 };
-module.exports = exports;

@@ -19,7 +19,6 @@ function handleResponse(req, promise) {
 
 
 // Publish API
-var exports = {
+module.exports = {
 	handleResponse: handleResponse
 };
-module.exports = exports;

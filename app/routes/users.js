@@ -62,7 +62,6 @@ routes.push({
 
 
 // Publish API
-var exports = {
+module.exports = {
 	getRoutes: function() { return Array.prototype.splice.call(routes, 0); }
 };
-module.exports = exports;
