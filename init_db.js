@@ -9,4 +9,5 @@ db.collection('users').insert(usersData, function(error) {
 	if (!error) {
 		console.log('Initialized \'users\' collection');
 	}
+	db.close();
 });

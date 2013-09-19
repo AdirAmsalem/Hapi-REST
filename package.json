@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "node app/app.js",
-    "test": "jasmine-node tests"
+    "test": "jasmine-node tests --forceexit"
   },
   "engines": {
     "node": ">=0.10.0"
