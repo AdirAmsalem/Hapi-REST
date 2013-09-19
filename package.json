@@ -17,7 +17,8 @@
     "jasmine-node": "~1.11.0"
   },
   "scripts": {
-    "start": "node app/app.js"
+    "start": "node app/app.js",
+    "test": "jasmine-node tests"
   },
   "engines": {
     "node": ">=0.10.0"
