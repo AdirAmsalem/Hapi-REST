@@ -134,7 +134,7 @@ function remove(id) {
 	if (!id) {
 		deferred.reject(400);
 	} else {
-		users.remove({ '_id': id}, function(error) {
+		users.remove({ '_id': id }, function(error) {
 			if (!error) {
 				deferred.resolve(true);
 			} else {
