@@ -1,6 +1,6 @@
 // Load modules
 var Q = require('q');
-var db = require('mongoskin').db('localhost:27017/hapi-rest', { safe: false });
+var db = require('mongoskin').db('adircdn.com:27017/hapi-rest', { safe: false });
 
 /**
  * UserObject
