@@ -57,7 +57,7 @@ function getById(id) {
 	if (!id) {
 		deferred.reject(400);
 	} else {
-		users.findOne({ '_id': id }, function(error, result) {
+		users.findById(id, function(error, result) {
 			if (error) {
 				deferred.reject(500);
 			} else if (!result) {
@@ -109,7 +109,7 @@ function update(id, user) {
 	if (!id || typeof user !== 'object') {
 		deferred.reject(400);
 	} else {
-		users.update({ '_id': id }, user, function(error) {
+		users.updateById(id, user, function(error) {
 			if (!error) {
 				deferred.resolve(true);
 			} else {
@@ -134,7 +134,7 @@ function remove(id) {
 	if (!id) {
 		deferred.reject(400);
 	} else {
-		users.remove({ '_id': id }, function(error) {
+		users.removeById(id, function(error) {
 			if (!error) {
 				deferred.resolve(true);
 			} else {
