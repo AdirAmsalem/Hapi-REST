@@ -14,7 +14,8 @@
     "mongoskin": "~0.6.0"
   },
   "devDependencies": {
-    "jasmine-node": "~1.11.0"
+    "jasmine-node": "~1.11.0",
+    "request": "~2.27.0"
   },
   "scripts": {
     "start": "node app/app.js",

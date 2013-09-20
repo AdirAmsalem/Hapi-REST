@@ -1,3 +1,4 @@
+// Load modules
 var users = require('../../app/models/users');
 
 describe('Model: Users', function() {
@@ -27,6 +28,16 @@ describe('Model: Users', function() {
 		});
 	});
 
+	it('add(): Should return error code 400', function(done) {
+		users.add({}).then( function(response) {
+			expect(true).toBeFalsy();
+			done();
+		}, function(response) {
+			expect(response).toBe(400);
+			done();
+		});
+	});
+
 	it('add(): Should add a new user', function(done) {
 		users.add(user).then( function(response) {
 			expect(response).toBeDefined();
@@ -46,6 +57,16 @@ describe('Model: Users', function() {
 	// update method
 	it('update(): Should return error code 400', function(done) {
 		users.update('123456', user).then( function(response) {
+			expect(true).toBeFalsy();
+			done();
+		}, function(response) {
+			expect(response).toBe(400);
+			done();
+		});
+	});
+
+	it('update(): Should return error code 400', function(done) {
+		users.update(user._id, {}).then( function(response) {
 			expect(true).toBeFalsy();
 			done();
 		}, function(response) {

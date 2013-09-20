@@ -1,6 +1,7 @@
 // Load modules
 var Q = require('q');
 var db = require('mongoskin').db('localhost:27017/hapi-rest', { safe: false });
+var Utilities = require('../utilities');
 
 /**
  * UserObject
@@ -80,7 +81,7 @@ function getById(id) {
 function add(user) {
 	var deferred = Q.defer();
 
-	if (typeof user !== 'object') {
+	if (typeof user !== 'object' || Utilities.isEmptyObject(user)) {
 		deferred.reject(400);
 	} else {
 		users.insert(user, function(error, result) {
@@ -106,7 +107,7 @@ function update(id, user) {
 	var deferred = Q.defer();
 	id = convertId(id);
 
-	if (!id || typeof user !== 'object') {
+	if (!id || typeof user !== 'object' || Utilities.isEmptyObject(user)) {
 		deferred.reject(400);
 	} else {
 		users.updateById(id, user, function(error) {

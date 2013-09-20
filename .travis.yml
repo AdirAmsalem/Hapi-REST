@@ -5,3 +5,4 @@ services:
   - mongodb
 before_script:
   - node init_db.js
+  - node app/app.js &
