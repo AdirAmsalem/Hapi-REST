@@ -28,7 +28,7 @@ describe('Model: Users', function() {
 		});
 	});
 
-	it('add(): Should return error code 400', function(done) {
+	it('add({}): Should return error code 400', function(done) {
 		users.add({}).then( function(response) {
 			expect(true).toBeFalsy();
 			done();
@@ -38,7 +38,7 @@ describe('Model: Users', function() {
 		});
 	});
 
-	it('add(): Should add a new user', function(done) {
+	it('add(user): Should add a new user', function(done) {
 		users.add(user).then( function(response) {
 			expect(response).toBeDefined();
 			expect(response.length).toBeDefined();
@@ -55,7 +55,7 @@ describe('Model: Users', function() {
 	});
 
 	// update method
-	it('update(): Should return error code 400', function(done) {
+	it('update(\'123456\', user): Should return error code 400', function(done) {
 		users.update('123456', user).then( function(response) {
 			expect(true).toBeFalsy();
 			done();
@@ -65,7 +65,7 @@ describe('Model: Users', function() {
 		});
 	});
 
-	it('update(): Should return error code 400', function(done) {
+	it('update(id, {}): Should return error code 400', function(done) {
 		users.update(user._id, {}).then( function(response) {
 			expect(true).toBeFalsy();
 			done();
@@ -75,7 +75,7 @@ describe('Model: Users', function() {
 		});
 	});
 
-	it('update(): Should update a user', function(done) {
+	it('update(id, user): Should update a user', function(done) {
 		users.update(user._id, user).then( function(response) {
 			expect(response).toBe(true);
 			done();
@@ -96,7 +96,7 @@ describe('Model: Users', function() {
 		});
 	});
 
-	it('getById(): Should return error code 404', function(done) {
+	it('getById(\'000000000000000000000000\'): Should return error code 404', function(done) {
 		users.getById('000000000000000000000000').then( function(response) {
 			expect(true).toBeFalsy();
 			done();
@@ -106,7 +106,7 @@ describe('Model: Users', function() {
 		});
 	});
 
-	it('getById(): Should get a specific user', function(done) {
+	it('getById(id): Should get a specific user', function(done) {
 		users.getById(user._id).then( function(response) {
 			expect(response).toBeDefined();
 			expect(String(response._id)).toBe(user._id);
@@ -130,7 +130,7 @@ describe('Model: Users', function() {
 		});
 	});
 
-	it('remove(): Should remove a user', function(done) {
+	it('remove(id): Should remove a user', function(done) {
 		users.remove(user._id).then( function(response) {
 			expect(response).toBe(true);
 			done();

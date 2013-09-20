@@ -9,7 +9,7 @@ describe('Router: Users', function() {
 	var user = { username: 'Test', password: 'test' };
 
 	// getAll method
-	it('getAll(): Should get all users', function(done) {
+	it('GET /users: Should get all users', function(done) {
 		request.get({ url: BASE_URL + '/users' }, function(error, response, body) {
 			expect(error).toBeNull();
 			expect(response).toBeDefined();
@@ -21,7 +21,7 @@ describe('Router: Users', function() {
 	});
 
 	// add method
-	it('add(): Should return error code 400', function(done) {
+	it('POST /users: Should return error code 400', function(done) {
 		request.post({ url: BASE_URL + '/users' }, function(error, response, body) {
 			expect(error).toBeNull();
 			expect(response).toBeDefined();
@@ -30,7 +30,7 @@ describe('Router: Users', function() {
 		});
 	});
 
-	it('add(): Should return error code 400', function(done) {
+	it('POST /users ({}): Should return error code 400', function(done) {
 		request.post({ url: BASE_URL + '/users', body: {} }, function(error, response, body) {
 			expect(error).toBeNull();
 			expect(response).toBeDefined();
@@ -39,7 +39,7 @@ describe('Router: Users', function() {
 		});
 	});
 
-	it('add(): Should add a new user', function(done) {
+	it('POST /users (user): Should add a new user', function(done) {
 		request.post({ url: BASE_URL + '/users', body: user }, function(error, response, body) {
 			expect(error).toBeNull();
 			expect(response).toBeDefined();
@@ -56,7 +56,7 @@ describe('Router: Users', function() {
 	});
 
 	// update method
-	it('update(): Should return error code 400', function(done) {
+	it('POST /users/123456: Should return error code 400', function(done) {
 		request.post({ url: BASE_URL + '/users/123456' }, function(error, response, body) {
 			expect(error).toBeNull();
 			expect(response).toBeDefined();
@@ -65,7 +65,7 @@ describe('Router: Users', function() {
 		});
 	});
 
-	it('update(): Should return error code 400', function(done) {
+	it('POST /users/id ({}): Should return error code 400', function(done) {
 		request.post({ url: BASE_URL + '/users/' + user._id, body: {} }, function(error, response, body) {
 			expect(error).toBeNull();
 			expect(response).toBeDefined();
@@ -74,7 +74,7 @@ describe('Router: Users', function() {
 		});
 	});
 
-	it('update(): Should update a user', function(done) {
+	it('POST /users/id (user): Should update a user', function(done) {
 		request.post({ url: BASE_URL + '/users/' + user._id, body: user }, function(error, response, body) {
 			expect(error).toBeNull();
 			expect(response).toBeDefined();
@@ -86,7 +86,7 @@ describe('Router: Users', function() {
 	});
 
 	// getById method
-	it('getById(): Should return error code 400', function(done) {
+	it('GET /users/123456: Should return error code 400', function(done) {
 		request.get({ url: BASE_URL + '/users/123456' }, function(error, response, body) {
 			expect(error).toBeNull();
 			expect(response).toBeDefined();
@@ -95,7 +95,7 @@ describe('Router: Users', function() {
 		});
 	});
 
-	it('getById(): Should return error code 404', function(done) {
+	it('GET /users/000000000000000000000000: Should return error code 404', function(done) {
 		request.get({ url: BASE_URL + '/users/000000000000000000000000' }, function(error, response, body) {
 			expect(error).toBeNull();
 			expect(response).toBeDefined();
@@ -104,7 +104,7 @@ describe('Router: Users', function() {
 		});
 	});
 
-	it('getbyId(): Should get a specific user', function(done) {
+	it('GET /users/id: Should get a specific user', function(done) {
 		request.get({ url: BASE_URL + '/users/' + user._id }, function(error, response, body) {
 			expect(error).toBeNull();
 			expect(response).toBeDefined();
@@ -118,7 +118,7 @@ describe('Router: Users', function() {
 	});
 
 	// remove method
-	it('remove(): Should return error code 400', function(done) {
+	it('DELETE /users/123456: Should return error code 400', function(done) {
 		request.del({ url: BASE_URL + '/users/123456' }, function(error, response, body) {
 			expect(error).toBeNull();
 			expect(response).toBeDefined();
@@ -127,7 +127,7 @@ describe('Router: Users', function() {
 		});
 	});
 
-	it('remove(): Should remove a user', function(done) {
+	it('DELETE /users/id: Should remove a user', function(done) {
 		request.del({ url: BASE_URL + '/users/' + user._id }, function(error, response, body) {
 			expect(error).toBeNull();
 			expect(response).toBeDefined();
