@@ -6,7 +6,7 @@ describe('Model: Users', function() {
 	var user = { username: 'Test', password: 'test' };
 
 	// getAll method
-	it('getAll(): Should return all users', function(done) {
+	it('getAll(): Should get all users', function(done) {
 		users.getAll().then( function(response) {
 			expect(response).toBeDefined();
 			expect(response.length).toBeDefined();

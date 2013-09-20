@@ -9,7 +9,7 @@ describe('Router: Users', function() {
 	var user = { username: 'Test', password: 'test' };
 
 	// getAll method
-	it('getAll(): Should return all users', function(done) {
+	it('getAll(): Should get all users', function(done) {
 		request.get({ url: BASE_URL + '/users' }, function(error, response, body) {
 			expect(error).toBeNull();
 			expect(response).toBeDefined();
@@ -104,7 +104,7 @@ describe('Router: Users', function() {
 		});
 	});
 
-	it('getbyId(): Should return a specific user', function(done) {
+	it('getbyId(): Should get a specific user', function(done) {
 		request.get({ url: BASE_URL + '/users/' + user._id }, function(error, response, body) {
 			expect(error).toBeNull();
 			expect(response).toBeDefined();
