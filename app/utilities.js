@@ -1,3 +1,7 @@
+// Load modules
+var app = require('./config');
+var db = app.getLib('mongoskin');
+
 /**
  * Handle incoming requests
  * 
@@ -18,6 +22,20 @@ function handleResponse(req, promise) {
 }
 
 /**
+ * Converts and validates the specified id
+ * 
+ * @param  {String} id
+ * @return {String|Boolean} converted id on success / false on failure
+ */
+function convertId(id) {
+	try {
+		return db.ObjectID.createFromHexString(id);
+	} catch(e) {
+		return false;
+	}
+}
+
+/**
  * Check if the given object is empty
  * 
  * @param  {Object}  obj
@@ -35,5 +53,6 @@ function isEmptyObject(obj) {
 // Publish API
 module.exports = {
 	handleResponse: handleResponse,
+	convertId: convertId,
 	isEmptyObject: isEmptyObject
 };

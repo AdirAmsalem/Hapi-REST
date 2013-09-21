@@ -1,7 +1,8 @@
 // Load modules
-var Q = require('q');
-var db = require('mongoskin').db('localhost:27017/hapi-rest', { safe: false });
-var Utilities = require('../utilities');
+var app = require('../config');
+var q = app.getLib('q');
+var db = app.getLib('mongoskin');
+var utilities = app.getLocal('utilities');
 
 /**
  * UserObject
@@ -13,26 +14,12 @@ var Utilities = require('../utilities');
 var users = db.collection('users');
 
 /**
- * Converts and validates the specified id
- * 
- * @param  {String} id
- * @return {String|Boolean} converted id on success / false on failure
- */
-function convertId(id) {
-	try {
-		return db.ObjectID.createFromHexString(id);
-	} catch(e) {
-		return false;
-	}
-}
-
-/**
  * Get all users
  * 
  * @return {Array} [UserObject]
  */
 function getAll() {
-	var deferred = Q.defer();
+	var deferred = q.defer();
 
 	users.find().toArray( function(error, result) {
 		if (result) {
@@ -52,8 +39,8 @@ function getAll() {
  * @return {Object} UserObject
  */
 function getById(id) {
-	var deferred = Q.defer();
-	id = convertId(id);
+	var deferred = q.defer();
+	id = utilities.convertId(id);
 
 	if (!id) {
 		deferred.reject(400);
@@ -79,9 +66,9 @@ function getById(id) {
  * @return {Object} UserObject
  */
 function add(user) {
-	var deferred = Q.defer();
+	var deferred = q.defer();
 
-	if (typeof user !== 'object' || Utilities.isEmptyObject(user)) {
+	if (typeof user !== 'object' || utilities.isEmptyObject(user)) {
 		deferred.reject(400);
 	} else {
 		users.insert(user, function(error, result) {
@@ -90,7 +77,7 @@ function add(user) {
 			} else {
 				deferred.reject(500);
 			}
-		})
+		});
 	}
 
 	return deferred.promise;
@@ -104,10 +91,10 @@ function add(user) {
  * @return {Boolean} true on success
  */
 function update(id, user) {
-	var deferred = Q.defer();
-	id = convertId(id);
+	var deferred = q.defer();
+	id = utilities.convertId(id);
 
-	if (!id || typeof user !== 'object' || Utilities.isEmptyObject(user)) {
+	if (!id || typeof user !== 'object' || utilities.isEmptyObject(user)) {
 		deferred.reject(400);
 	} else {
 		users.updateById(id, user, function(error) {
@@ -129,8 +116,8 @@ function update(id, user) {
  * @return {Boolean} true on success
  */
 function remove(id) {
-	var deferred = Q.defer();
-	id = convertId(id);
+	var deferred = q.defer();
+	id = utilities.convertId(id);
 
 	if (!id) {
 		deferred.reject(400);

@@ -1,6 +1,7 @@
 // Load modules
-var Utilities = require('../utilities');
-var users = require('../models/users');
+var app = require('../config');
+var users = app.getModel('users');
+var utilities = app.getLocal('utilities');
 
 var routes = [];
 
@@ -14,9 +15,9 @@ routes.push({
 		var id = req.params.id;
 
 		if (id) {
-			Utilities.handleResponse(req, users.getById(id));
+			utilities.handleResponse(req, users.getById(id));
 		} else {
-			Utilities.handleResponse(req, users.getAll());
+			utilities.handleResponse(req, users.getAll());
 		}
 	}
 });
@@ -29,7 +30,7 @@ routes.push({
 	path: '/users',
 	handler: function(req) {
 		var data = req.payload;
-		Utilities.handleResponse(req, users.add(data));
+		utilities.handleResponse(req, users.add(data));
 	}
 });
 
@@ -44,7 +45,7 @@ routes.push({
 		var id = req.params.id;
 		var data = req.payload;
 
-		Utilities.handleResponse(req, users.update(id, data));
+		utilities.handleResponse(req, users.update(id, data));
 	}
 });
 
@@ -56,7 +57,7 @@ routes.push({
 	path: '/users/{id}',
 	handler: function(req) {
 		var id = req.params.id;
-		Utilities.handleResponse(req, users.remove(id));
+		utilities.handleResponse(req, users.remove(id));
 	}
 });
 

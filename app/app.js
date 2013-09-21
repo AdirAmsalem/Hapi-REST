@@ -1,18 +1,19 @@
 var App = (function() {
 
 	var server;
-	var routes = ['main', 'users'];
+	var app = require('./config');
 
 	// Initialize the server
 	function initServer() {
-		var Hapi = require('hapi');
-		server = Hapi.createServer('0.0.0.0', parseInt(process.env.PORT, 10) || 3000);
+		var hapi = app.getLib('hapi');
+		server = hapi.createServer('0.0.0.0', app.globals.server.port);
 	}
 
 	// Register routes
 	function registerRoutes() {
-		routes.forEach( function(route) {
-			var router = require('./routes/' + route);
+		var routers = app.getRouters();
+
+		routers.forEach( function(router) {
 			router.getRoutes().forEach( function(route) {
 				server.route(route);
 			});

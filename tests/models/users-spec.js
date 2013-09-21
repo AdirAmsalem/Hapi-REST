@@ -1,5 +1,6 @@
 // Load modules
-var users = require('../../app/models/users');
+var app = require('../../app/config');
+var users = app.getModel('users');
 
 describe('Model: Users', function() {
 
