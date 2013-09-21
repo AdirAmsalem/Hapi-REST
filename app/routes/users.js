@@ -39,7 +39,7 @@ routes.push({
  * Update a user
  */
 routes.push({
-	method: 'POST',
+	method: 'PUT',
 	path: '/users/{id}',
 	handler: function(req) {
 		var id = req.params.id;

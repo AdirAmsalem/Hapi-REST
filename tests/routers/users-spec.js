@@ -56,8 +56,8 @@ describe('Router: Users', function() {
 	});
 
 	// update method
-	it('POST /users/123456: Should return error code 400', function(done) {
-		request.post({ url: baseUrl + '/users/123456' }, function(error, response, body) {
+	it('PUT /users/123456: Should return error code 400', function(done) {
+		request.put({ url: baseUrl + '/users/123456' }, function(error, response, body) {
 			expect(error).toBeNull();
 			expect(response).toBeDefined();
 			expect(response.statusCode).toBe(400);
@@ -65,8 +65,8 @@ describe('Router: Users', function() {
 		});
 	});
 
-	it('POST /users/id ({}): Should return error code 400', function(done) {
-		request.post({ url: baseUrl + '/users/' + user._id, body: {} }, function(error, response, body) {
+	it('PUT /users/id ({}): Should return error code 400', function(done) {
+		request.put({ url: baseUrl + '/users/' + user._id, body: {} }, function(error, response, body) {
 			expect(error).toBeNull();
 			expect(response).toBeDefined();
 			expect(response.statusCode).toBe(400);
@@ -74,8 +74,8 @@ describe('Router: Users', function() {
 		});
 	});
 
-	it('POST /users/id (user): Should update a user', function(done) {
-		request.post({ url: baseUrl + '/users/' + user._id, body: user }, function(error, response, body) {
+	it('PUT /users/id (user): Should update a user', function(done) {
+		request.put({ url: baseUrl + '/users/' + user._id, body: user }, function(error, response, body) {
 			expect(error).toBeNull();
 			expect(response).toBeDefined();
 			expect(response.statusCode).toBe(200);
