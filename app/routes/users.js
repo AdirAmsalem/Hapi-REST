@@ -34,7 +34,6 @@ routes.push({
 	}
 });
 
-
 /**
  * Update a user
  */

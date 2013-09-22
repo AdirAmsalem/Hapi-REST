@@ -8,7 +8,7 @@ describe('Router: Users', function() {
 
 	var user = { username: 'Test', password: 'test' };
 
-	// getAll method
+	// GET /users
 	it('GET /users: Should get all users', function(done) {
 		request.get({ url: baseUrl + '/users' }, function(error, response, body) {
 			expect(error).toBeNull();
@@ -20,7 +20,7 @@ describe('Router: Users', function() {
 		});
 	});
 
-	// add method
+	// POST /users/id (user)
 	it('POST /users: Should return error code 400', function(done) {
 		request.post({ url: baseUrl + '/users' }, function(error, response, body) {
 			expect(error).toBeNull();
@@ -55,7 +55,7 @@ describe('Router: Users', function() {
 		});
 	});
 
-	// update method
+	// PUT /users/id (user)
 	it('PUT /users/123456: Should return error code 400', function(done) {
 		request.put({ url: baseUrl + '/users/123456' }, function(error, response, body) {
 			expect(error).toBeNull();
@@ -85,7 +85,7 @@ describe('Router: Users', function() {
 		});
 	});
 
-	// getById method
+	// GET /users/id
 	it('GET /users/123456: Should return error code 400', function(done) {
 		request.get({ url: baseUrl + '/users/123456' }, function(error, response, body) {
 			expect(error).toBeNull();
@@ -117,7 +117,7 @@ describe('Router: Users', function() {
 		});
 	});
 
-	// remove method
+	// DELETE /users/id
 	it('DELETE /users/123456: Should return error code 400', function(done) {
 		request.del({ url: baseUrl + '/users/123456' }, function(error, response, body) {
 			expect(error).toBeNull();
