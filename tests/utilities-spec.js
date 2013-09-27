@@ -23,7 +23,7 @@ describe('Local: Utilities', function() {
 	});
 
 	it('isEmptyObject({}): Should return true', function() {
-		expect(utilities.isEmptyObject()).toBe(true);
+		expect(utilities.isEmptyObject({})).toBe(true);
 	});
 
 	it('isEmptyObject({ foo: \'bar\' }): Should return false', function() {
