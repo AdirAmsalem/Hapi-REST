@@ -18,7 +18,7 @@
     "request": "~2.27.0"
   },
   "scripts": {
-    "start": "node app/app.js",
+    "start": "node server/app.js",
     "test": "jasmine-node tests --verbose --forceexit"
   },
   "engines": {

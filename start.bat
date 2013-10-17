@@ -1,5 +1,5 @@
 :: Use this if you have 'nodemon' installed
-:: nodemon app/app.js
+:: nodemon server/app.js
 
 :: Use this otherwise
-node app/app.js
+node server/app.js
