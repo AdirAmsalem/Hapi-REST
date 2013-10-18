@@ -1,5 +1,5 @@
 // Load modules
-var app = require('../server/config');
+var app = require('../../server/config');
 var utilities = app.getLocal('utilities');
 
 describe('Local: Utilities', function() {

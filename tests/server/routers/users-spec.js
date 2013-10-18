@@ -1,5 +1,5 @@
 // Load modules
-var app = require('../../server/config');
+var app = require('../../../server/config');
 var request = app.getLib('request');
 
 var baseUrl = app.globals.server.host + ':' + app.globals.server.port;
