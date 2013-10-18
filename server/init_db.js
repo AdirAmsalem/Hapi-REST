@@ -1,9 +1,10 @@
 // Load modules
-var fs = require('fs');
-var db = require('mongoskin').db('localhost:27017/hapi-rest', { safe: false });
+var app = require(__dirname + '/config');
+var fs = app.getLib('fs');
+var db = app.getLib('mongoskin');
 
 // Initialize 'users' collection
-var usersData = JSON.parse(fs.readFileSync('./data/users.json', 'utf8'));
+var usersData = JSON.parse(fs.readFileSync(__dirname + '/../data/users.json', 'utf8'));
 db.collection('users').remove();
 db.collection('users').insert(usersData, function(error) {
 	if (!error) {

@@ -1,3 +1,6 @@
+// Load modules
+var fs = require('fs');
+
 // Global variables
 var globals = {
 	server: {
@@ -23,21 +26,39 @@ var requires = {
 		],
 	},
 	locals: {
-		directory: './',
+		directory: __dirname + '/',
 		files: ['utilities']
 	},
 	routers: {
-		directory: './routes/',
-		files: ['main', 'users']
+		directory: __dirname + '/routes/',
 	},
 	models: {
-		directory: './models/',
-		files: ['users']
+		directory: __dirname + '/models/',
 	}
 };
 
+// Used to load all our routers and models
+['routers', 'models'].forEach( function(type) {
+	var files = [];
+
+	// Retrieve all files from these folders and iterate over them
+	fs.readdirSync(requires[type].directory).forEach( function(file) {
+		// We only want '.js' files
+		if (file.substr(file.length-3, file.length) === '.js') {
+			// Push it to the list
+			files.push(file.substr(0, file.length-3));
+		}
+	});
+
+	// Assign the files
+	requires[type].files = files;
+});
+
 // Development dependencies (tests, etc)
 var devLibs = [
+	{
+		name: 'fs'
+	},
 	{
 		name: 'request',
 		extra: {
