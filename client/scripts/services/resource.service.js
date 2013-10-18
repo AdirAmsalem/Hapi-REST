@@ -5,7 +5,6 @@ Hapi.factory('resource', ['$resource', function($resource) {
 
 	// Global actions
 	var globalActions = {
-		//
 		get: {
 			cache: true,
 			method: 'GET'

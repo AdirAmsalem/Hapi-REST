@@ -1,3 +1,8 @@
+// Load modules
+var app = require('../config');
+var fs = app.getLib('fs');
+var utilities = app.getLocal('utilities');
+
 var routes = [];
 
 /**
@@ -7,7 +12,24 @@ routes.push({
 	method: 'GET',
 	path: '/',
 	handler: function(req) {
-		req.reply({ message: 'Welcome to my RESTful Web Service!' });
+		req.reply({ message: 'Welcome to my RESTful Web Service! visit \'/actions\' for available actions.' });
+	}
+});
+
+/**
+ * Get available actions list
+ */
+routes.push({
+	method: 'GET',
+	path: '/actions',
+	handler: function(req) {
+		fs.readFile(__dirname + '/../actions.json', function(error, data) {
+			if (error) {
+				req.reply().code(500);
+			} else {
+				req.reply(data);
+			}
+		});
 	}
 });
 

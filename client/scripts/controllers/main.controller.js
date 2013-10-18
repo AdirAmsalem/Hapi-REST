@@ -1,11 +1,7 @@
-Hapi.controller('MainController', ['$scope', function($scope) {
+Hapi.controller('MainController', ['$scope', 'resource', function($scope, resource) {
 
-	// Top-Level actions
-	$scope.actions = [
-		{
-			url: 'users',
-			name: 'User List'
-		}
-	];
-
+	// Get Top-Level actions
+	resource('actions').getAll().$promise.then( function(actions) {
+		$scope.actions = actions;
+	});
 }]);
