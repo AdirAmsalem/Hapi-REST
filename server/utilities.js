@@ -50,6 +50,7 @@ function isEmptyObject(obj) {
 	return true;
 }
 
+
 // Publish API
 module.exports = {
 	handleResponse: handleResponse,

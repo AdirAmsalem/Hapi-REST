@@ -6,7 +6,7 @@ var App = (function() {
 	// Initialize the server
 	function initServer() {
 		var hapi = app.getLib('hapi');
-		server = hapi.createServer('0.0.0.0', app.globals.server.port);
+		server = hapi.createServer('0.0.0.0', app.globals.server.port, { cors: true });
 	}
 
 	// Register routes

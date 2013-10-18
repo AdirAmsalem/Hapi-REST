@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="Hapi">
+<head>
+	<meta charset="utf8">
+	<title>Hapi-REST Client</title>
+	<link rel="stylesheet" href="styles/main.css">
+	<link rel="stylesheet" href="styles/vendor/bootstrap.min.css">
+</head>
+<body ng-controller="MainController">
+
+	<div class="container" ng-view></div>
+
+	<!-- 3rd-party libraries -->
+	<script src="scripts/vendor/angular.js"></script>
+	<script src="scripts/vendor/angular-route.min.js"></script>
+	<script src="scripts/vendor/angular-resource.min.js"></script>
+
+	<!-- Application files -->
+	<script src="scripts/app.js"></script>
+	<script src="scripts/controllers/main.controller.js"></script>
+	<script src="scripts/controllers/users.controller.js"></script>
+	<script src="scripts/services/resource.service.js"></script>
+	<script src="scripts/services/users.service.js"></script>
+</body>
+</html>

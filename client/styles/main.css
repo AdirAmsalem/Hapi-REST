@@ -1,0 +1,19 @@
+/* line 1, sass/_common.scss */
+body {
+  background: #fafafa;
+  color: #333333;
+}
+
+/* line 6, sass/_common.scss */
+[ng-cloak] {
+  display: none;
+}
+
+/* line 3, sass/_user.scss */
+.user .user-label {
+  font-weight: bold;
+}
+/* line 6, sass/_user.scss */
+.user .user-label:after {
+  content: ":";
+}

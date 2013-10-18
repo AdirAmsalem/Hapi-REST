@@ -1,0 +1,24 @@
+<div class="users" ng-show="!user">
+	<a href="#!/">Back</a>
+
+	<h1>User List</h1>
+	<ul class="list-unstyled" ng-show="users">
+		<li ng-repeat="user in users">
+			<a href="#!/users/{{user._id}}" ng-bind="user.username"></a>
+		</li>
+	</ul>
+</div>
+
+<div class="user" ng-show="user">
+	<a href="#!/users">Back</a>
+
+	<h1 ng-bind="user.username"></h1>
+	<div>
+		<span class="user-label">ID</span>
+		<span ng-bind="user._id"></span>
+	</div>
+	<div>
+		<span class="user-label">Password</span>
+		<span ng-bind="user.password"></span>
+	</div>
+</div>
