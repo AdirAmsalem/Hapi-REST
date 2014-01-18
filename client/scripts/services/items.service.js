@@ -3,8 +3,8 @@ Hapi.factory('items', ['resource', function(resource) {
 	// Storage
 	var itemsResource;
 
-	// Publish API
-	return {
+	// Public methods
+	var methods = {
 		/**
 		 * Set the resource's endpoint
 		 * 
@@ -22,5 +22,8 @@ Hapi.factory('items', ['resource', function(resource) {
 		get: function(itemId) {
 			return itemsResource.get({ itemId: itemId }).$promise;
 		}
-	}
+	};
+
+	// Publish API
+	return methods;
 }]);
