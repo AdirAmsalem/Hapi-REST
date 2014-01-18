@@ -2,16 +2,17 @@ var Hapi = angular.module('Hapi', ['ngRoute', 'ngResource'])
 	.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
 	$routeProvider
-			.when('/', {
-				templateUrl: 'views/main.html'
-			})
-			.when('/:endpoint/:itemId?', {
-				templateUrl: 'views/items.html',
-				controller: 'ItemsController'
-			})
-			.otherwise({
-				redirectTo: '/'
-			});
+		.when('/', {
+			controller: 'MainController',
+			templateUrl: 'views/main.html'
+		})
+		.when('/:endpoint/:itemId?', {
+			controller: 'ItemsController',
+			templateUrl: 'views/items.html'
+		})
+		.otherwise({
+			redirectTo: '/'
+		});
 
-			$locationProvider.html5Mode(false).hashPrefix('!');
+		$locationProvider.html5Mode(false).hashPrefix('!');
 	}]);

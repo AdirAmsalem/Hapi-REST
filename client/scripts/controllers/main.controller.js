@@ -1,7 +1,7 @@
-Hapi.controller('MainController', ['$scope', 'resource', function($scope, resource) {
+Hapi.controller('MainController', ['$scope', 'endpoints', function($scope, endpoints) {
 
-	// Get Top-Level actions
-	resource('actions').get().$promise.then( function(actions) {
-		$scope.actions = actions.result;
+	// Get Top-Level endpoints
+	endpoints.getEndpoints().then( function(result) {
+		$scope.endpoints = result;
 	});
 }]);

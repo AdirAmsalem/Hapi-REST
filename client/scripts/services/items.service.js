@@ -1,5 +1,6 @@
 Hapi.factory('items', ['resource', function(resource) {
 
+	// Storage
 	var itemsResource;
 
 	// Publish API

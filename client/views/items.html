@@ -1,15 +1,15 @@
-<div class="items" ng-show="!item">
+<div class="items" ng-if="!item && items">
 	<a href="#!/">Back</a>
 
 	<h1 ng-bind="endpoint.name"></h1>
-	<ul class="list-unstyled" ng-show="items">
+	<ul class="list-unstyled">
 		<li ng-repeat="item in items">
 			<a href="#!/{{endpoint.url}}/{{item._id}}" ng-bind="item[identifier]"></a>
 		</li>
 	</ul>
 </div>
 
-<div class="item" ng-show="item">
+<div class="item" ng-if="!items && item">
 	<a href="#!/{{endpoint.url}}">Back</a>
 
 	<h1 ng-bind="item[identifier]"></h1>

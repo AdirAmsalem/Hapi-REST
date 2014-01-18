@@ -12,18 +12,18 @@ routes.push({
 	method: 'GET',
 	path: '/',
 	handler: function(req) {
-		req.reply({ result: 'Welcome to my RESTful Web Service! visit \'/actions\' for available actions.' });
+		req.reply({ result: 'Welcome to my RESTful Web Service! visit \'/endpoints\' for available endpoints.' });
 	}
 });
 
 /**
- * Get available actions list
+ * Get available endpoints list
  */
 routes.push({
 	method: 'GET',
-	path: '/actions',
+	path: '/endpoints',
 	handler: function(req) {
-		fs.readFile(__dirname + '/../actions.json', function(error, data) {
+		fs.readFile(__dirname + '/../endpoints.json', function(error, data) {
 			if (error) {
 				req.reply().code(500);
 			} else {

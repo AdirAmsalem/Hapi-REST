@@ -18,9 +18,9 @@ describe('Router: Main', function() {
 		});
 	});
 
-	// GET /actions
-	it('GET /actions: Should get all actions', function(done) {
-		request.get({ url: baseUrl + '/actions' }, function(error, response, body) {
+	// GET /endpoints
+	it('GET /endpoints: Should get all endpoints', function(done) {
+		request.get({ url: baseUrl + '/endpoints' }, function(error, response, body) {
 			expect(error).toBeNull();
 			expect(response).toBeDefined();
 			expect(response.statusCode).toBe(200);
