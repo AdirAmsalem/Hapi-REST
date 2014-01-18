@@ -1,14 +1,14 @@
 Hapi.factory('endpoints', ['$q', 'resource', function($q, resource) {
 
+	// Storage
+	var endpointsCache;
+
 	/**
 	 * Endpoint
 	 * 
 	 * @property {String} name
 	 * @property {String} url
 	 */
-
-	// Storage
-	var endpointsCache;
 	var endpointsResource = resource('endpoints');
 
 	/**
