@@ -13,7 +13,7 @@ describe('Router: Main', function() {
 			expect(response).toBeDefined();
 			expect(response.statusCode).toBe(200);
 			expect(body).toBeDefined();
-			expect(body.message).toBeDefined();
+			expect(body.result).toBeDefined();
 			done();
 		});
 	});
@@ -25,7 +25,8 @@ describe('Router: Main', function() {
 			expect(response).toBeDefined();
 			expect(response.statusCode).toBe(200);
 			expect(body).toBeDefined();
-			expect(body.length).toBeDefined();
+			expect(body.result).toBeDefined();
+			expect(body.result.length).toBeDefined();
 			done();
 		});
 	});

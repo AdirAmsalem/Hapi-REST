@@ -12,7 +12,7 @@ routes.push({
 	method: 'GET',
 	path: '/',
 	handler: function(req) {
-		req.reply({ message: 'Welcome to my RESTful Web Service! visit \'/actions\' for available actions.' });
+		req.reply({ result: 'Welcome to my RESTful Web Service! visit \'/actions\' for available actions.' });
 	}
 });
 
@@ -27,7 +27,7 @@ routes.push({
 			if (error) {
 				req.reply().code(500);
 			} else {
-				req.reply(data);
+				req.reply({ result: JSON.parse(data) });
 			}
 		});
 	}

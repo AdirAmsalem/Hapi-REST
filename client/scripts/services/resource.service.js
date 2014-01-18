@@ -8,14 +8,8 @@ Hapi.factory('resource', ['$resource', function($resource) {
 		get: {
 			cache: true,
 			method: 'GET'
-		},
-		getAll: {
-			cache: true,
-			method: 'GET',
-			isArray: true
 		}
 	};
-
 
 	// Publish API
 	return function(url, params, actions) {
