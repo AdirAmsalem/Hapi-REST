@@ -10,7 +10,9 @@ describe('Model: Users', function() {
 	it('getAll(): Should get all users', function(done) {
 		users.getAll().then( function(response) {
 			expect(response).toBeDefined();
-			expect(response.length).toBeDefined();
+			expect(response.identifier).toBeDefined();
+			expect(response.result).toBeDefined();
+			expect(response.result.length).toBeDefined();
 			done();
 		}, function(response) {
 			expect(true).toBeFalsy();
@@ -42,12 +44,14 @@ describe('Model: Users', function() {
 	it('add(user): Should add a new user', function(done) {
 		users.add(user).then( function(response) {
 			expect(response).toBeDefined();
-			expect(response.length).toBeDefined();
-			expect(response[0]).toBeDefined();
-			expect(response[0]._id).toBeDefined();
-			expect(response[0].username).toBe(user.username);
-			expect(response[0].password).toBe(user.password);
-			user._id = String(response[0]._id);
+			expect(response.identifier).toBeDefined();
+			expect(response.result).toBeDefined();
+			expect(response.result.length).toBeDefined();
+			expect(response.result[0]).toBeDefined();
+			expect(response.result[0]._id).toBeDefined();
+			expect(response.result[0].username).toBe(user.username);
+			expect(response.result[0].password).toBe(user.password);
+			user._id = String(response.result[0]._id);
 			done();
 		}, function(response) {
 			expect(true).toBeFalsy();
@@ -78,7 +82,8 @@ describe('Model: Users', function() {
 
 	it('update(id, user): Should update a user', function(done) {
 		users.update(user._id, user).then( function(response) {
-			expect(response).toBe(true);
+			expect(response).toBeDefined();
+			expect(response.result).toBe(true);
 			done();
 		}, function(response) {
 			expect(true).toBeFalsy();
@@ -110,9 +115,11 @@ describe('Model: Users', function() {
 	it('getById(id): Should get a specific user', function(done) {
 		users.getById(user._id).then( function(response) {
 			expect(response).toBeDefined();
-			expect(String(response._id)).toBe(user._id);
-			expect(response.username).toBe(user.username);
-			expect(response.password).toBe(user.password);
+			expect(response.identifier).toBeDefined();
+			expect(response.result).toBeDefined();
+			expect(String(response.result._id)).toBe(user._id);
+			expect(response.result.username).toBe(user.username);
+			expect(response.result.password).toBe(user.password);
 			done();
 		}, function(response) {
 			expect(true).toBeFalsy();
@@ -133,7 +140,8 @@ describe('Model: Users', function() {
 
 	it('remove(id): Should remove a user', function(done) {
 		users.remove(user._id).then( function(response) {
-			expect(response).toBe(true);
+			expect(response).toBeDefined();
+			expect(response.result).toBe(true);
 			done();
 		}, function(response) {
 			expect(true).toBeFalsy();

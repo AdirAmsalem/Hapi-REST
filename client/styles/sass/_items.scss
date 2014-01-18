@@ -1,7 +1,8 @@
-.user {
+.item {
 
-	.user-label {
+	.item-label {
 		font-weight: bold;
+		text-transform: capitalize;
 
  		&:after {
 			content: ":";

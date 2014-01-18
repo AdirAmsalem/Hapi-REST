@@ -1,0 +1,20 @@
+<div class="items" ng-show="!item">
+	<a href="#!/">Back</a>
+
+	<h1 ng-bind="endpoint.name"></h1>
+	<ul class="list-unstyled" ng-show="items">
+		<li ng-repeat="item in items">
+			<a href="#!/{{endpoint.url}}/{{item._id}}" ng-bind="item[identifier]"></a>
+		</li>
+	</ul>
+</div>
+
+<div class="item" ng-show="item">
+	<a href="#!/{{endpoint.url}}">Back</a>
+
+	<h1 ng-bind="item[identifier]"></h1>
+	<div ng-repeat="(key, val) in item" ng-if="key !== identifier">
+		<span class="item-label" ng-bind="fieldNameToLabel(key)"></span>
+		<span ng-bind="val"></span>
+	</div>
+</div>

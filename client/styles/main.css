@@ -9,11 +9,12 @@ body {
   display: none;
 }
 
-/* line 3, sass/_user.scss */
-.user .user-label {
+/* line 3, sass/_items.scss */
+.item .item-label {
   font-weight: bold;
+  text-transform: capitalize;
 }
-/* line 6, sass/_user.scss */
-.user .user-label:after {
+/* line 7, sass/_items.scss */
+.item .item-label:after {
   content: ":";
 }
