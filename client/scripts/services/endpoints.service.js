@@ -46,6 +46,13 @@ Hapi.factory('endpoints', ['$q', 'resource', function($q, resource) {
 			} else {
 				endpointsResource.get().$promise.then( function(data) {
 					endpointsCache = data.result;
+
+					endpointsCache.forEach( function(endpoint) {
+						if (endpoint.url.indexOf('/') === 0) {
+							endpoint.url = endpoint.url.substr(1);
+						}
+					});
+
 					deferred.resolve(endpointsCache);
 				});
 			}
