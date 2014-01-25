@@ -3,9 +3,9 @@ var app = require('../config');
 var users = app.getModel('users');
 var utilities = app.getLocal('utilities');
 
-var endpointDetails = {
+var endpoint = {
 	name: 'User list',
-	url: 'users'
+	url: '/users'
 };
 
 var routes = [];
@@ -15,7 +15,7 @@ var routes = [];
  */
 routes.push({
 	method: 'GET',
-	path: '/users/{id?}',
+	path: endpoint.url + '/{id?}',
 	handler: function(req) {
 		var id = req.params.id;
 
@@ -32,7 +32,7 @@ routes.push({
  */
 routes.push({
 	method: 'POST',
-	path: '/users',
+	path: endpoint.url,
 	handler: function(req) {
 		var data = req.payload;
 		utilities.handleResponse(req, users.add(data));
@@ -44,7 +44,7 @@ routes.push({
  */
 routes.push({
 	method: 'PUT',
-	path: '/users/{id}',
+	path: endpoint.url + '/{id}',
 	handler: function(req) {
 		var id = req.params.id;
 		var data = req.payload;
@@ -58,7 +58,7 @@ routes.push({
  */
 routes.push({
 	method: 'DELETE',
-	path: '/users/{id}',
+	path: endpoint.url + '/{id}',
 	handler: function(req) {
 		var id = req.params.id;
 		utilities.handleResponse(req, users.remove(id));
@@ -68,6 +68,6 @@ routes.push({
 
 // Publish API
 module.exports = {
-	getEndpointDetails: function() { return endpointDetails; },
+	getEndpointDetails: function() { return endpoint; },
 	getRoutes: function() { return Array.prototype.splice.call(routes, 0); }
 };
