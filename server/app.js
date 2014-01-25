@@ -14,6 +14,12 @@ var App = (function() {
 		var routers = app.getRouters();
 
 		routers.forEach( function(router) {
+			// Add as an endpoint
+			if (router.hasOwnProperty('getEndpointDetails')) {
+				app.addEndpoint(router.getEndpointDetails());
+			}
+
+			// Assign routes
 			router.getRoutes().forEach( function(route) {
 				server.route(route);
 			});

@@ -17,19 +17,19 @@ routes.push({
 });
 
 /**
- * Get available endpoints list
+ * Get endpoint list
  */
 routes.push({
 	method: 'GET',
 	path: '/endpoints',
 	handler: function(req) {
-		fs.readFile(__dirname + '/../endpoints.json', function(error, data) {
-			if (error) {
-				req.reply().code(500);
-			} else {
-				req.reply({ result: JSON.parse(data) });
-			}
-		});
+		var endpoints = app.getEndpoints();
+
+		if (endpoints) {
+			req.reply({ result: endpoints });
+		} else {
+			req.reply().code(500);
+		}
 	}
 });
 

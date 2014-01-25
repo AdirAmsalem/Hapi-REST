@@ -6,7 +6,8 @@ var globals = {
 	server: {
 		host: 'http://localhost',
 		port: parseInt(process.env.PORT, 10) || 3000
-	}
+	},
+	endpoints: []
 };
 
 // Application files/dependencies
@@ -132,5 +133,11 @@ module.exports = {
 		});
 
 		return found;
+	},
+	addEndpoint: function(endpoint) {
+		globals.endpoints.push(endpoint);
+	},
+	getEndpoints: function() {
+		return Array.prototype.slice.call(globals.endpoints, 0);
 	}
 };

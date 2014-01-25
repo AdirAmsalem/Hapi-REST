@@ -3,6 +3,11 @@ var app = require('../config');
 var users = app.getModel('users');
 var utilities = app.getLocal('utilities');
 
+var endpointDetails = {
+	name: 'User list',
+	url: 'users'
+};
+
 var routes = [];
 
 /**
@@ -63,5 +68,6 @@ routes.push({
 
 // Publish API
 module.exports = {
+	getEndpointDetails: function() { return endpointDetails; },
 	getRoutes: function() { return Array.prototype.splice.call(routes, 0); }
 };
