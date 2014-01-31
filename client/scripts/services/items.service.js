@@ -1,4 +1,4 @@
-Hapi.factory('items', ['resource', function(resource) {
+Hapi.factory('items', function(resource) {
 
 	// Storage
 	var itemsResource;
@@ -27,4 +27,4 @@ Hapi.factory('items', ['resource', function(resource) {
 
 	// Publish API
 	return methods;
-}]);
+});

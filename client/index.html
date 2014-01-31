@@ -3,24 +3,26 @@
 <head>
 	<meta charset="utf8">
 	<title>Hapi-REST Client</title>
-	<link rel="stylesheet" href="styles/main.css">
+	<!-- build:css({.tmp,client}) styles/main.css -->
 	<link rel="stylesheet" href="styles/vendor/bootstrap.min.css">
+	<link rel="stylesheet" href="styles/main.css">
+	<!-- endbuild -->
 </head>
 <body>
+<div class="container" ng-view></div>
 
-	<div class="container" ng-view></div>
-
-	<!-- 3rd-party libraries -->
-	<script src="bower_components/angular/angular.js"></script>
-	<script src="bower_components/angular-route/angular-route.js"></script>
-	<script src="bower_components/angular-resource/angular-resource.js"></script>
-
-	<!-- Application files -->
-	<script src="scripts/app.js"></script>
-	<script src="scripts/controllers/main.controller.js"></script>
-	<script src="scripts/controllers/items.controller.js"></script>
-	<script src="scripts/services/endpoints.service.js"></script>
-	<script src="scripts/services/items.service.js"></script>
-	<script src="scripts/services/resource.service.js"></script>
+<!-- build:js({.tmp,client}) scripts/vendor.js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<!-- endbuild -->
+<!-- build:js({.tmp,client}) scripts/hapi.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/main.controller.js"></script>
+<script src="scripts/controllers/items.controller.js"></script>
+<script src="scripts/services/endpoints.service.js"></script>
+<script src="scripts/services/items.service.js"></script>
+<script src="scripts/services/resource.service.js"></script>
+<!-- endbuild -->
 </body>
 </html>

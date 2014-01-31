@@ -1,4 +1,4 @@
-Hapi.controller('ItemsController', ['$scope', '$location', '$routeParams', 'endpoints', 'items', function($scope, $location, $routeParams, endpoints, items) {
+Hapi.controller('ItemsController', function($scope, $location, $routeParams, endpoints, items) {
 
 	// Make sure we have an endpoint
 	if (!$routeParams.endpoint) return;
@@ -58,4 +58,4 @@ Hapi.controller('ItemsController', ['$scope', '$location', '$routeParams', 'endp
 
 	// Get endpoint details and initialize
 	endpoints.getByUrl($routeParams.endpoint).then(init, handleError);
-}]);
+});

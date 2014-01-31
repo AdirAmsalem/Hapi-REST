@@ -1,5 +1,5 @@
 var Hapi = angular.module('Hapi', ['ngRoute', 'ngResource'])
-	.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+	.config(function($routeProvider, $locationProvider) {
 
 	$routeProvider
 		.when('/', {
@@ -15,4 +15,4 @@ var Hapi = angular.module('Hapi', ['ngRoute', 'ngResource'])
 		});
 
 		$locationProvider.html5Mode(false).hashPrefix('!');
-	}]);
+	});

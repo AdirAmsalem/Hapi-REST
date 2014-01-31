@@ -1,4 +1,4 @@
-Hapi.factory('resource', ['$resource', function($resource) {
+Hapi.factory('resource', function($resource) {
 
 	// Define base url
 	var baseUrl = 'http://localhost:3000/';
@@ -23,4 +23,4 @@ Hapi.factory('resource', ['$resource', function($resource) {
 
 		return $resource(baseUrl + url, params, myActions);
 	}
-}]);
+});

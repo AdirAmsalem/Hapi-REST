@@ -1,4 +1,4 @@
-Hapi.factory('endpoints', ['$q', 'resource', function($q, resource) {
+Hapi.factory('endpoints', function($q, resource) {
 
 	// Storage
 	var endpointsCache;
@@ -84,4 +84,4 @@ Hapi.factory('endpoints', ['$q', 'resource', function($q, resource) {
 
 	// Publish API
 	return methods;
-}]);
+});
