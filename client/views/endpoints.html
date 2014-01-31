@@ -1,0 +1,8 @@
+<div class="endpoints">
+	<h1>Top-Level Endpoints</h1>
+	<ul class="list-unstyled endpoints-list" w-mousetrap="{'w': selectPrevious, 's': selectNext, 'd': gotoItem}">
+		<li class="endpoints-list-item" ng-repeat="endpoint in endpoints" ng-class="{'active': isActiveItem($index)}">
+			<a href="#!/{{endpoint.url}}" ng-bind="endpoint.name"></a>
+		</li>
+	</ul>
+</div>

@@ -1,4 +1,4 @@
-Hapi.controller('ItemsController', function($scope, $location, $routeParams, endpoints, items) {
+Hapi.controller('ItemsController', function($scope, $routeParams, endpoints, items, activeItem) {
 
 	// Make sure we have an endpoint
 	if (!$routeParams.endpoint) return;
@@ -38,22 +38,40 @@ Hapi.controller('ItemsController', function($scope, $location, $routeParams, end
 				$scope.item = data.result;
 			}, function() {
 				// Return to item list if we failed to get a specific item
-				$location.path($routeParams.endpoint);
+				$scope.setPath($routeParams.endpoint);
 			});
 		} else {
 			// Get all items
 			items.get().then( function(data) {
 				$scope.identifier = data.identifier;
 				$scope.items = data.result;
+
+				// Set the items for the activeItem service
+				activeItem.setItems($scope.items);
 			});
 		}
 	}
 
 	/**
+	 * Go to the endpoint list
+	 */
+	$scope.gotoList = function() {
+		$scope.setPath($scope.endpoint.url);
+	};
+
+	/**
+	 * Go to the selected item
+	 */
+	$scope.gotoItem = function() {
+		var activeItemIndex = activeItem.get();
+		$scope.setPath($scope.endpoint.url + '/' + $scope.items[activeItemIndex]._id);
+	};
+
+	/**
 	 * Handle invalid endpoint
 	 */
 	function handleError() {
-		$location.path('/');
+		$scope.gotoHome();
 	}
 
 	// Get endpoint details and initialize

@@ -1,10 +1,11 @@
-var Hapi = angular.module('Hapi', ['ngRoute', 'ngResource'])
+var Hapi = angular.module('Hapi',
+	['ngRoute', 'ngResource', 'mgo-mousetrap'])
 	.config(function($routeProvider, $locationProvider) {
 
 	$routeProvider
 		.when('/', {
-			controller: 'MainController',
-			templateUrl: 'views/main.html'
+			controller: 'EndpointsController',
+			templateUrl: 'views/endpoints.html'
 		})
 		.when('/:endpoint/:itemId?', {
 			controller: 'ItemsController',
@@ -14,5 +15,5 @@ var Hapi = angular.module('Hapi', ['ngRoute', 'ngResource'])
 			redirectTo: '/'
 		});
 
-		$locationProvider.html5Mode(false).hashPrefix('!');
-	});
+	$locationProvider.html5Mode(false).hashPrefix('!');
+});

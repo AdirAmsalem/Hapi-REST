@@ -1,16 +1,16 @@
 <div class="items" ng-if="!item && items">
-	<a href="#!/">Back</a>
+	<a href="#!/" w-mousetrap="{'a': gotoHome}">Back</a>
 
 	<h1 ng-bind="endpoint.name"></h1>
-	<ul class="list-unstyled">
-		<li ng-repeat="item in items">
+	<ul class="list-unstyled items-list" w-mousetrap="{'w': selectPrevious, 's': selectNext, 'd': gotoItem}">
+		<li class="items-list-item" ng-repeat="item in items" ng-class="{'active': isActiveItem($index)}">
 			<a href="#!/{{endpoint.url}}/{{item._id}}" ng-bind="item[identifier]"></a>
 		</li>
 	</ul>
 </div>
 
 <div class="item" ng-if="!items && item">
-	<a href="#!/{{endpoint.url}}">Back</a>
+	<a href="#!/{{endpoint.url}}" w-mousetrap="{'a': gotoList}">Back</a>
 
 	<h1 ng-bind="item[identifier]"></h1>
 	<div ng-repeat="(key, val) in item" ng-if="key !== identifier">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="Hapi">
+<html ng-app="Hapi" ng-controller="MainController">
 <head>
 	<meta charset="utf8">
 	<title>Hapi-REST Client</title>
@@ -15,14 +15,18 @@
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/mousetrap/mousetrap.js"></script>
+<script src="scripts/vendors/mgo-mousetrap.js"></script>
 <!-- endbuild -->
 <!-- build:js({.tmp,client}) scripts/hapi.js -->
 <script src="scripts/app.js"></script>
 <script src="scripts/controllers/main.controller.js"></script>
+<script src="scripts/controllers/endpoints.controller.js"></script>
 <script src="scripts/controllers/items.controller.js"></script>
 <script src="scripts/services/endpoints.service.js"></script>
 <script src="scripts/services/items.service.js"></script>
 <script src="scripts/services/resource.service.js"></script>
+<script src="scripts/services/active-item.service.js"></script>
 <!-- endbuild -->
 </body>
 </html>
