@@ -4,5 +4,7 @@ node_js:
 services:
   - mongodb
 before_script:
-  - node server/init_db.js
-  - node server/app.js &
+  - 'npm install -g bower grunt-cli'
+  - 'bower install'
+  - 'node server/init_db.js'
+  - 'node server/app.js &'

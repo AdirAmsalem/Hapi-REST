@@ -20,6 +20,7 @@ Hapi.factory('items', ['resource', function(resource) {
 		 * @return {Object} result (Promise)
 		 */
 		get: function(itemId) {
+			console.log(itemsResource.get({ itemId: itemId }))
 			return itemsResource.get({ itemId: itemId }).$promise;
 		}
 	};
