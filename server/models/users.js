@@ -24,7 +24,12 @@ var methods = {
 	getAll: function() {
 		var deferred = q.defer();
 
-		users.find().toArray( function(error, result) {
+		var fieldsToReturn = {
+			_id: 1,
+			username: 1
+		};
+
+		users.find({}, fieldsToReturn).toArray( function(error, result) {
 			if (result) {
 				deferred.resolve({ identifier: identifier, result: result });
 			} else {
